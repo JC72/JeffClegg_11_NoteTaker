@@ -22,29 +22,26 @@ module.exports = function(app){
         res.json(noteInfo);
     });
 
-    // POST Method to add notes
+    // POST request which adds the notes to the list and db.json
     app.post("/api/notes", function(req, res){
 
-        var nNote = req.body;
-
-        // Set id number to entry
+        // generates a id number for the note
         if (noteInfo.length == 0){
-            nNote.id = "1";
+            req.body.id = "0";
         } else{
-            nNote.id = JSON.stringify(JSON.parse(noteInfo[noteInfo.length].id) + 1);
+            req.body.id = JSON.stringify(JSON.parse(noteInfo[noteInfo.length-1].id) + 1);
         }
         
-        console.log("nNote.id: " + nNote.id);
+        console.log("req.body.id: " + req.body.id);
 
-        // Pushes Body to JSON Array
-        noteInfo.push(nNote);
+        // pushes the note to the Json file
+        noteInfo.push(req.body);
 
-        // Write notes data to database
+        // calls the function to write the file
         dbWrite(noteInfo);
         console.log(noteInfo);
 
-        // returns new note in JSON format.
-        res.json(nNote);
+        res.json(req.body);
     });
 
     // DELETE request to delete a note from its specific ID
@@ -54,20 +51,21 @@ module.exports = function(app){
         let id = req.params.id.toString();
         console.log(id);
 
-        // Goes through notesArray searching for matching ID
-        for (i=1; i < noteInfo.length; i++){
+        // Goes through the notes Array to find the matching
+        // ID and deletes it from the array
+
+        for (i=0; i < noteInfo.length; i++){
            
             if (noteInfo[i].id == id){
                 console.log("Found It");
                 res.send(noteInfo[i]);
 
-                // Deletes the selected note
                 noteInfo.splice(i,1);
                 break;
             }
         }
 
-        // Write new notes data back to database
+        // Writes the new array data back to database
         dbWrite(noteInfo);
 
     });
