@@ -38,14 +38,12 @@ This project has been loaded to my Personal GitHub Page and deployed to my Herok
 
 * Notes Page
     *Contains a NavBar the holds the following:
-    
-        * Note Taker text
+        1. Note Taker text
             * when clicked takes you back to the home page.
-
-        * Save Icon
+        2. Save Icon
             * which shows up when only a Title for the note and the note is added to the designated placeholders.
 
-        * Pencil Icon 
+        3. Pencil Icon 
             * which allows you to create a new note
     
     * Container the when the note is saved stores it with the title and a trash can icon.
