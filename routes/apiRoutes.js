@@ -1,62 +1,74 @@
-// ===============================================================================
 // Required Modules
-// requiring fs and the json file db.json
-// This data source holds an array in which to store the note information.
-// ===============================================================================
+const fs = require("fs");
+const noteInfo = require("../db/db.json");
 
-var fs = require("fs");
-var noteData = require("../db/db.json");
+module.exports = function(app){
 
+    function dbWrite(notes){
+        // Converts db.JSON Array back to a string
+        notes = JSON.stringify(notes);
+        console.log (notes);
+        // converts and writes string back to db.json
+        fs.writeFileSync("./db/db.json", notes, function(err){
+            if (err) {
+                return console.log(err);
+            }
+        });
+    }
 
-module.exports = function(app) {
+    // GET Method this will return all results
 
+    app.get("/api/notes", function(req, res){
+        res.json(noteInfo);
+    });
 
-    // //JSON Write Function
-    // //This function converts JSON to string and
-    // //then writes the string back to the db.json file
+    // POST Method to add notes
+    app.post("/api/notes", function(req, res){
 
-    // function dbWrite(notes);
+        var nNote = req.body;
 
-    //     notes = JSON.stringify(notes);
-    //     console.log (notes);
-    //     fs.writeFileSync("./db/db.json", notes, function(err){
-    //         if (err) {
-    //             return console.log(err);
-    //         }
-    //     });
-    // }
+        // Set id number to entry
+        if (noteInfo.length == 0){
+            nNote.id = "1";
+        } else{
+            nNote.id = JSON.stringify(JSON.parse(noteInfo[noteInfo.length].id) + 1);
+        }
+        
+        console.log("nNote.id: " + nNote.id);
 
+        // Pushes Body to JSON Array
+        noteInfo.push(nNote);
 
-  // API GET Request
+        // Write notes data to database
+        dbWrite(noteInfo);
+        console.log(noteInfo);
 
-  app.get("/api/notes", function(req, res) {
-    res.json(noteData);
-  });
+        // returns new note in JSON format.
+        res.json(nNote);
+    });
 
-  // API POST Requests
-  // Code below handles when a user submits the note and then submits data to the server.
-  // In the below case, when a user submits notes data
-  // ...the JSON is pushed to the appropriate db.json array and given a id number
-  // so we can search for the data
+    // DELETE request to delete a note from its specific ID
+    app.delete("/api/notes/:id", function(req, res){
+        
+        // Obtains id and converts to a string
+        let id = req.params.id.toString();
+        console.log(id);
 
-  app.post("/api/notes", function(req, res) {
-    // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-    // It will do this by sending out the value "true" have a table
-    // req.body is available since we're using the body parsing middleware
-    var newNote = req.body;
+        // Goes through notesArray searching for matching ID
+        for (i=1; i < noteInfo.length; i++){
+           
+            if (noteInfo[i].id == id){
+                console.log("Found It");
+                res.send(noteInfo[i]);
 
-    newNote.routeName = newNote.title.replace(/\s+/g, "").toLowerCase();
+                // Deletes the selected note
+                noteInfo.splice(i,1);
+                break;
+            }
+        }
 
-    console.log(newNote);
-    noteData.push(newNote);
-    
-    res.json(newNote);
-  });
+        // Write new notes data back to database
+        dbWrite(noteInfo);
 
-  app.post("/api/clear", function(req, res) {
-    // Empty out the arrays of data
-    noteData.length = 0;
-
-    res.json({ ok: true });
-  });
+    });
 };
