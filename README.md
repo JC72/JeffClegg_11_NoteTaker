@@ -25,7 +25,7 @@ This project has been loaded to my Personal GitHub Page and deployed to my Herok
 
 ## Demo:
 
-![]()
+![](https://github.com/JC72/JeffClegg_11_NoteTaker/blob/main/public/assets/video/demovideo.gif)
 
 ## Assignment
 ### This assignment contains the following features:
@@ -33,28 +33,26 @@ This project has been loaded to my Personal GitHub Page and deployed to my Herok
 * Home Page
     * Contains a button to go to the working Notes page.
 
-    ![Home Page]()
+    ![Home Page](https://github.com/JC72/JeffClegg_11_NoteTaker/blob/main/public/assets/screenshots/homepage.png)
 
 
 * Notes Page
     *Contains a NavBar the holds the following:
     
         * Note Taker text
-            - when clicked takes you back to the home page.
+            * when clicked takes you back to the home page.
 
         * Save Icon
-            - which shows up when only a Title for the note and the note is added to the designated placeholders.
+            * which shows up when only a Title for the note and the note is added to the designated placeholders.
 
         * Pencil Icon 
-            - which allows you to create a new note
+            * which allows you to create a new note
     
     * Container the when the note is saved stores it with the title and a trash can icon.
 
     * Container that allow the user to type the Title and the Note itself.
 
-    ![Note Page]()
-
-
+    ![Note Page](https://github.com/JC72/JeffClegg_11_NoteTaker/blob/main/public/assets/screenshots/notespage.png)
 
 ## File Structure <a name="filestructure"></a>
 
