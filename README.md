@@ -36,15 +36,18 @@ This project has been loaded to my Personal GitHub Page and deployed to my Herok
     ![Home Page](https://github.com/JC72/JeffClegg_11_NoteTaker/blob/main/public/assets/screenshots/homepage.png)
 
 
-* Notes Page
-    *Contains a NavBar the holds the following:
+    * Notes Page
 
-        1. Note Taker text
-            <!-- * when clicked takes you back to the home page. -->
-        2. Save Icon
-            <!-- * which shows up when only a Title for the note and the note is added to the designated placeholders. -->
-        3. Pencil Icon 
-            <!-- * which allows you to create a new note -->
+        *Contains a NavBar the holds the following:
+
+            1. Note Taker text
+                * when clicked takes you back to the home page.
+
+            2. Save Icon
+                * which shows up when only a Title for the note and the note is added to the designated placeholders.
+
+            3. Pencil Icon 
+                * which allows you to create a new note
     
     * Container the when the note is saved stores it with the title and a trash can icon.
 
