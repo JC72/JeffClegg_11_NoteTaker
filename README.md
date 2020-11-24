@@ -38,7 +38,7 @@ This project has been loaded to my Personal GitHub Page and deployed to my Herok
 
 * Notes Page
 
-    *Contains a NavBar the holds the following:
+    * Contains a NavBar the holds the following:
 
         1. Note Taker text
 
@@ -49,7 +49,7 @@ This project has been loaded to my Personal GitHub Page and deployed to my Herok
             * which shows up when only a Title for the note and the note is added to the designated placeholders.
 
         3. Pencil Icon 
-        
+
             * which allows you to create a new note
 
     * Container the when the note is saved stores it with the title and a trash can icon.
